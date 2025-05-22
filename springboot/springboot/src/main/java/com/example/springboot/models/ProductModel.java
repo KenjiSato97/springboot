@@ -16,6 +16,16 @@ public class ProductModel implements Serializable {
     private UUID idProduct;
     private String name;
     private BigDecimal value;
+    @Column(nullable = false)
+    private Integer quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public UUID getIdProduct() {
         return idProduct;
