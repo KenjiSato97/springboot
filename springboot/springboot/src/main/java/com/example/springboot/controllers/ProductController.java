@@ -66,7 +66,7 @@ public class ProductController {
         productOptional.setQuantity(quantity);
         return ResponseEntity.status(HttpStatus.OK).body(productService.update(id, new ProductRecordDto(
                 productOptional.getName(),
-                productOptional.getPrice(),
+                productOptional.getValue(),
                 quantity
         )));
     }
