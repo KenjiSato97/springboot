@@ -1,5 +1,6 @@
 package com.example.springboot.services;
 
+import com.example.springboot.dtos.ProductNewValuesDto;
 import com.example.springboot.dtos.ProductRecordDto;
 import com.example.springboot.models.ProductModel;
 import java.util.List;
@@ -13,4 +14,5 @@ public interface ProductService {
     boolean existsById(UUID id);
     ProductModel update(UUID id, ProductRecordDto productDto);
     void delete(UUID id);
+    List<ProductNewValuesDto> getAllWithConvertedValues();
 }

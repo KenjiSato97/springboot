@@ -1,9 +1,14 @@
 package com.example.springboot.controllers;
 
+import com.example.springboot.client.ApiCurrencyClient;
+import com.example.springboot.dtos.CurrencyDataDto;
+import com.example.springboot.dtos.ExchangeResponseDto;
+import com.example.springboot.dtos.ProductNewValuesDto;
 import com.example.springboot.dtos.ProductRecordDto;
 import com.example.springboot.models.ProductModel;
 import com.example.springboot.services.ProductService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +20,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@Slf4j
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ApiCurrencyClient apiCurrencyClient;
 
     @PostMapping("/products")
     public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductRecordDto productRecordDto) {
@@ -28,6 +36,11 @@ public class ProductController {
     @GetMapping("/products")
     public ResponseEntity<List<ProductModel>> getAllProducts() {
         return ResponseEntity.status(HttpStatus.OK).body(productService.findAll());
+    }
+
+    @GetMapping("/currency")
+    public ResponseEntity<List<ProductNewValuesDto>> getProducts() {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getAllWithConvertedValues());
     }
 
     @GetMapping("/products/{id}")

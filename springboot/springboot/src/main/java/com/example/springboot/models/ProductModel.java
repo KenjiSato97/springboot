@@ -1,6 +1,8 @@
 package com.example.springboot.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -8,6 +10,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "TB_PRODUCTS")
+@Getter
+@Setter
 public class ProductModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -18,36 +22,4 @@ public class ProductModel implements Serializable {
     private BigDecimal value;
     @Column(nullable = false)
     private Integer quantity;
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public UUID getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(UUID idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
 }
